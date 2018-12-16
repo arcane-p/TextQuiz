@@ -2,10 +2,40 @@ import random
 import time
 import subprocess
 import os
+import sys
 
+def chooseDir():
+    print ("Current Directory: " + os.getcwd())
+    answer = input("Would you like to change it? (y/n): ").lower().strip()
+    while not (answer == "y" or answer == "yes" or answer == "n" or answer == "no"):
+        print("Please give a valid input")
+        answer = input("Would you like to change it? (y/n): ").lower().strip()
+    if answer[0] == "y":
+        newDir = input("New Directory (Copy and Paste): ")
+        while os.path.isdir(newDir) == False:
+            print ("Not a valid directory!")
+            newDir = input("New Directory (Copy and Paste): ")
+        newDir = os.path.normcase(newDir)
+        os.chdir(newDir)
+    print ("Current Directory: " + os.getcwd())
+    print ('Files in Directory:')
+    file_list = '\n'.join(os.listdir('.'))
+    print(file_list)
+    answerFile = input("Name of answer file (include the file extension): ")
+    while os.path.isfile(answerFile) == False:
+        print ('Error! File does not exist!\nPlease try again')
+        answerFile = input("Name of answer file (include the file extension): ")
+    questionFile = input("Name of question file (include the file extension): ")
+    while os.path.isfile(questionFile) == False:
+        print ('Error! File does not exist!\nPlease try again')
+        questionFile = input("Name of question file (include the file extension): ")
+    ### because return answerFile,questionFile doesnt work
+    global questionFile
+    global answerFile
+###
 def lq(number):
     if number <= QuestionCount:
-        f = open("Questions.txt", "r")
+        f = open(questionFile, "r")
         question = ''
         for i, line in enumerate(f):
             if i == number:
@@ -18,7 +48,7 @@ def lq(number):
 
 def la(number):
     if number <= AnswerCount:
-        f = open("Answers.txt", "r")
+        f = open(answerFile, "r")
         answer = ''
         for i, line in enumerate(f):
             if i == number:
@@ -31,13 +61,13 @@ def la(number):
 
 def init(Questionfile, Answerfile):
     count = 0
-    for line in open(Questionfile+".txt", "r"):
+    for line in open(Questionfile, "r"):
         count += 1
     global QuestionCount
     QuestionCount = count
     ###
     count = 0
-    for line in open(Answerfile+".txt", "r"):
+    for line in open(Answerfile, "r"):
         count += 1
     global AnswerCount
     AnswerCount = count
@@ -77,7 +107,7 @@ def EndOfQuiz(filename):
     else:
         print("The file does not exist") 
 
-def StartQuiz(Questionfile, Answerfile):
+def StartQuiz(Questionfile,Answerfile):
     init(Questionfile, Answerfile)
     if AnswerCount != QuestionCount:
         print ("Error, counts dont match")
@@ -117,8 +147,8 @@ def StartQuiz(Questionfile, Answerfile):
 
 
 ###
-StartQuiz("Questions", "Answers")
-
+chooseDir()
+StartQuiz(questionFile, answerFile)
 
 
 
