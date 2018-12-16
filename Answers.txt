@@ -1,0 +1,24 @@
+C
+A
+A, B
+A
+D
+TRUE
+B, D
+D
+FALSE
+B
+C
+B
+C
+A
+D
+FALSE
+B
+TRUE
+FALSE
+B
+TRUE
+A
+C, D
+FALSE
