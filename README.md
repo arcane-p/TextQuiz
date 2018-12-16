@@ -1,6 +1,5 @@
-# TextQuiz
+# TextQuiz Dev Branch
 Quiz that runs in console. 
 
-**Features**
-
-Differenciates between true/false, questions with 4 choices, questions with 2 choices, and questions that have 2 answers.
+**TODO**
+. Try to make a gui somehow (its gonna be hard)
