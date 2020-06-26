@@ -74,22 +74,27 @@ def init(Questionfile, Answerfile):
 
 def EndOfQuiz(filename):
     print("These were your results: ")
-    alist = [line.rstrip() for line in open(filename+'.tmp')]
+    alist = [line.strip().split(',') for line in open(filename+'.tmp')]
     del alist[0]
     print (alist)
     questions = []
     answers = []
     for thing in alist:
-        tempQ = thing[0]
-        questions.append(tempQ)
-        tempA = thing[3]
-        answers.append(tempA)
+        #questions.append(thing[:1])
+        print("Question: " + str(thing[:1]))
+        print(thing[1::2].strip())
+        #answers.append(thing[3])
+    print (questions)
+    print (answers)
     correctA = 0
     wrongA = 0
+    print (len(questions))
     for i in range(len(questions)):
         if answers[i] == 'Y':
+            print("Answer correct :" +answers[i])
             correctA += 1
         elif answers[i] == 'N':
+            print("Answer wrong :" +answers[i])
             wrongA += 1
     print ('Right: ' + str(correctA))
     print ('Wrong: ' + str(wrongA))
