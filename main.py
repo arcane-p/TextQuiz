@@ -33,6 +33,8 @@ def chooseDir():
     global questionFile
     global answerFile
 ###
+questionFile = "tests/Test 1/Questions.txt"
+answerFile = "tests/Test 1/Answers.txt"
 def lq(number):
     if number <= QuestionCount:
         f = open(questionFile, "r")
@@ -105,7 +107,7 @@ def EndOfQuiz(filename):
     if os.path.exists(filename+'.tmp'):
         os.remove(filename+'.tmp')
     else:
-        print("The file does not exist") 
+        print("The file does not exist")
 
 def StartQuiz(Questionfile,Answerfile):
     init(Questionfile, Answerfile)
@@ -147,20 +149,5 @@ def StartQuiz(Questionfile,Answerfile):
 
 
 ###
-chooseDir()
+#chooseDir()
 StartQuiz(questionFile, answerFile)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

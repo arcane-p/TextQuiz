@@ -1,0 +1,24 @@
+{
+	"totalQuestions": 2,
+	"Question1": {
+		"question": "Does this work?",
+		"options": [
+			"Yes!",
+			"no...",
+			"whatever"
+		],
+		"answerNum": 1,
+		"hintAvailable": 1,
+		"hintMessage": "Most likely it is working."
+	},
+	"Question2": {
+		"question": "filler question",
+		"options": [
+			"unfortunately",
+			"whatever"
+		],
+		"answerNum": 1,
+		"hintAvailable": 0,
+		"hintMessage": 0
+	}
+}
