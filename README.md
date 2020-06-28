@@ -1,9 +1,12 @@
 # TextQuiz
-CLI Quiz coded from scratch. Not the best but was a useful exercise when I started.
-The real challenge is i'm now rewriting it to use classes. This will be a new introduction for me into object-oriented python - I'm much more comfortable with linear, maths-style operations.
+CLI Quiz generator from scratch. Not the most useful program, it was a very useful exercise in object-oriented programming.
+I'm much more comfortable with linear, maths-style operations, so this was a welcome challenge.
 
 **Features**
-- Differentiates between true/false, questions with 4 choices, questions with 2 choices, and questions that have 2 answers.
+- Interactive mode creates JSON answer file. This is encoded with uu, since base 64 is pretty recognisable, however with an encoded pyc file the uu decoding won't be easily spotted.
+- Offers scrambling of both answers and/or questions
+- compiles .py into .pyc to try to make it harder for people to find the answers
+- Any number of options,
 
 **Todo**
 - Now I'd like to add more customisation. Say a custom title screen.

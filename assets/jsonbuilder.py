@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import json
+from codecs import decode,encode
+import uu
 from .PP import PPrint #Pretty printing
 
 main = {}
@@ -30,7 +32,7 @@ def BuildJSON(filename):
             break
         totalQuestions += 1 #Increase questionNum and totalQuestions - they effectively work the same
         #OPTIONS
-        PPrint("Please write available answers. Can put as many as you want, write 'stop' to finish", "module")
+        PPrint("Write available answers. Can put as many as you want, write 'stop' to finish", "module")
         i = 0
         options = []
         answer = ""
@@ -61,5 +63,7 @@ def BuildJSON(filename):
 
     main["totalQuestions"] = totalQuestions
     #Write this stuff
-    with open(filename, 'w') as f:
-        json.dump(main, f)
+    all_json = json.dumps(main)
+    enc_json=encode(all_json.encode(),"uu")
+    with open(filename, 'wb') as f:
+        f.write(enc_json)

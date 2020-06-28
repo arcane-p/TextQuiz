@@ -8,10 +8,10 @@ class PPrint():
         self.type = type
         init() #colorama.init()
         if self.type == "plus":
-            print(f"{Style.BRIGHT}{Fore.BLUE}[+]{Style.NORMAL}{Fore.RESET}{message}")
+            print(f"{Style.BRIGHT}{Fore.BLUE}[+] {Style.NORMAL}{Fore.RESET}{message}")
         elif self.type == "minus":
-            print(f"{Style.BRIGHT}{Fore.RED}[-]{Style.NORMAL}{Fore.RESET}{message}")
+            print(f"{Style.BRIGHT}{Fore.RED}[-] {Style.NORMAL}{Fore.RESET}{message}")
         elif self.type == "info":
-            print(f"{Style.BRIGHT}{Fore.YELLOW}[*]{Style.NORMAL}{Fore.RESET}{message}")
+            print(f"{Style.BRIGHT}{Fore.YELLOW}[*] {Style.NORMAL}{Fore.RESET}{message}")
         elif self.type == "module":
-            print(f"{Style.BRIGHT}[?]{Style.NORMAL}{message}")
+            print(f"{Style.BRIGHT}[?] {Style.NORMAL}{message}")
