@@ -2,3 +2,4 @@ __pycache__
 temp_questions.json
 .DS_Store
 *.pyc
+tests
