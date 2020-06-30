@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-### THIS IS THE ORIGINAL UNMINIFIED CODE FOR THE QUIZLET
+# THIS IS THE ORIGINAL UNMINIFIED CODE FOR THE QUIZLET
 import json
-from codecs import decode,encode
+from codecs import decode, encode
 
-#Minimized JSON Code
+# Minimized JSON Code
 questionFileContent = """{}
 """
-###
 
 class Question():
     def __init__(self, number):
@@ -19,12 +18,13 @@ class Question():
 
     def ask(self):
         print(f"\nQuestion {self.number}: {self.questionText}")
-        for i in range(0,len(self.possibleAnswers)):
+        for i in range(0, len(self.possibleAnswers)):
             print(f"{i+1}: {self.possibleAnswers[i]}")
         # Loop until valid input
         while True:
             try:
-                self.givenAnswer = int(input("Input number of answer (or '0' for hint): "))
+                self.givenAnswer = int(
+                    input("Input number of answer (or '0' for hint): "))
             except ValueError:
                 print("Please input a number.")
                 continue
@@ -41,14 +41,15 @@ class Question():
                 print("Doesn't seem to be a valid answer.")
                 continue
             else:
-                #answer was successfully parsed, and we're happy with its value.
-                #we're ready to exit the loop.
+                # answer was successfully parsed, and we're happy with its value.
+                # we're ready to exit the loop.
                 break
         if int(self.givenAnswer) == int(self.answerNum):
-            #Correct!
+            # Correct!
             return True
         else:
             return False
+
 
 def EndQuiz():
     print("\nQuiz completed!")
@@ -62,19 +63,21 @@ def EndQuiz():
     print(f"You got {(correctAnswers/(correctAnswers+incorrectAnswers))*100}% correct. That is {correctAnswers} correct, {incorrectAnswers} incorrect.")
     print(answerList)
 
+
 def LoadQuiz():
-    #Gather "data", either from file or from within.
+    # Gather "data", either from file or from within.
     global data
-    unenc_json = decode(questionFileContent,"rot_13")
+    unenc_json = decode(questionFileContent, "rot_13")
     data = json.loads(unenc_json)
-    #Create list with right or wrong
+    # Create list with right or wrong
     global answerList
     answerList = []
 
+
 def StartQuiz():
-    #Proceed to ask questions. Find total number then ask iteratively
+    # Proceed to ask questions. Find total number then ask iteratively
     totalQuestions = data["totalQuestions"]
-    for i in range(1, totalQuestions+1):
+    for i in range(1, totalQuestions + 1):
         if Question(i).ask() == True:
             answerList.append("T")
         else:
@@ -82,7 +85,7 @@ def StartQuiz():
 
 
 print(
-"""
+    """
 ___________              __  ________        .__
 \\__    ___/___ ___  ____/  |_\\_____  \\  __ __|__|_______
   |    |_/ __ \\\  \\/  /\\   __\\/  / \\  \\|  |  \\  \\___   /

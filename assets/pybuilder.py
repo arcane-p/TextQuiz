@@ -2,14 +2,14 @@
 import string
 import os
 
+
 class PyBuilder():
     def __init__(self):
         self.QuizHead = '''
 #!/usr/bin/env python3
-### THIS IS THE ORIGINAL UNMINIFIED CODE FOR THE QUIZLET
 import json
-from codecs import decode,encode
-''' #Has been minified. qui_template.py contains the original code.
+from codecs import decode, encode
+'''  # Has been minified. qui_template.py contains the original code.
 
         self.QuizBody = '''
 class Question():
@@ -22,13 +22,14 @@ class Question():
         self.answerNum = self.questionData["answerNum"]
 
     def ask(self):
-        print(f"\\nQuestion {self.number}: {self.questionText}")
-        for i in range(0,len(self.possibleAnswers)):
+        print(f"\nQuestion {self.number}: {self.questionText}")
+        for i in range(0, len(self.possibleAnswers)):
             print(f"{i+1}: {self.possibleAnswers[i]}")
         # Loop until valid input
         while True:
             try:
-                self.givenAnswer = int(input("Input number of answer (or '0' for hint): "))
+                self.givenAnswer = int(
+                    input("Input number of answer (or '0' for hint): "))
             except ValueError:
                 print("Please input a number.")
                 continue
@@ -45,17 +46,18 @@ class Question():
                 print("Doesn't seem to be a valid answer.")
                 continue
             else:
-                #answer was successfully parsed, and we're happy with its value.
-                #we're ready to exit the loop.
+                # answer was successfully parsed, and we're happy with its value.
+                # we're ready to exit the loop.
                 break
         if int(self.givenAnswer) == int(self.answerNum):
-            #Correct!
+            # Correct!
             return True
         else:
             return False
 
+
 def EndQuiz():
-    print("\\nQuiz completed!")
+    print("\nQuiz completed!")
     correctAnswers = 0
     incorrectAnswers = 0
     for value in answerList:
@@ -66,19 +68,21 @@ def EndQuiz():
     print(f"You got {(correctAnswers/(correctAnswers+incorrectAnswers))*100}% correct. That is {correctAnswers} correct, {incorrectAnswers} incorrect.")
     print(answerList)
 
+
 def LoadQuiz():
-    #Gather "data", either from file or from within.
+    # Gather "data", either from file or from within.
     global data
-    unenc_json = decode(questionFileContent,"rot_13")
+    unenc_json = decode(questionFileContent, "rot_13")
     data = json.loads(unenc_json)
-    #Create list with right or wrong
+    # Create list with right or wrong
     global answerList
     answerList = []
 
+
 def StartQuiz():
-    #Proceed to ask questions. Find total number then ask iteratively
+    # Proceed to ask questions. Find total number then ask iteratively
     totalQuestions = data["totalQuestions"]
-    for i in range(1, totalQuestions+1):
+    for i in range(1, totalQuestions + 1):
         if Question(i).ask() == True:
             answerList.append("T")
         else:
@@ -102,21 +106,23 @@ try:
 except Exception as e:
     print(f"Quiz execution failed: {e}")
     exit(1)
-''' #Has been minified. quiz_template.py contains the original code.
+'''  # Has been minified. quiz_template.py contains the original code.
 
-    def build(self,name):
-        #Validate filename
+    def build(self, name):
+        # Validate filename
         valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
-        valid_chars = frozenset(valid_chars) #speed optimization :)
+        valid_chars = frozenset(valid_chars)  # speed optimization :)
         filename = ''.join(c for c in name if c in valid_chars)
-        filename = filename.replace(' ','_') # I don't like spaces in filenames
-        #Create .py file
-        with open(filename+".py", 'w') as finalfile:
-            finalfile.write(self.QuizHead) # quiz head
+        # I don't like spaces in filenames
+        filename = filename.replace(' ', '_')
+        # Create .py file
+        with open(filename + ".py", 'w') as finalfile:
+            finalfile.write(self.QuizHead)  # quiz head
             with open("temp_questions.json", 'r') as tempjson:
                 jsonquestions = tempjson.read()
-            os.remove("temp_questions.json") # don't need it anymore
-            finalfile.write(f"questionFileContent = str('''{jsonquestions}''')")
+            os.remove("temp_questions.json")  # don't need it anymore
+            finalfile.write(
+                f"questionFileContent = str('''{jsonquestions}''')")
             finalfile.write(self.QuizBody)
-        return filename+".py"
-        #python written
+        return filename + ".py"
+        # python written
