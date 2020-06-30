@@ -2,7 +2,6 @@
 ### THIS IS THE ORIGINAL UNMINIFIED CODE FOR THE QUIZLET
 import json
 from codecs import decode,encode
-import uu
 
 #Minimized JSON Code
 questionFileContent = """{}
@@ -66,7 +65,7 @@ def EndQuiz():
 def LoadQuiz():
     #Gather "data", either from file or from within.
     global data
-    unenc_json = decode(questionFileContent,"uu").decode() #to utf8
+    unenc_json = decode(questionFileContent,"rot_13")
     data = json.loads(unenc_json)
     #Create list with right or wrong
     global answerList

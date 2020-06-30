@@ -48,7 +48,7 @@ try:
     PPrint("What shuffle mode? (N)one, (A)nswers, (Q)uestions, or (B)oth?", "module")
     PPrint("Both is default if no input. Lowercase and uppercase accepted.","module")
     shuffleMode = input("")
-    if shuffleMode.upper()[0] == "" or "B":
+    if shuffleMode.upper() == "" or shuffleMode.upper()[0] == "B":
         shuffle("temp_questions.json").both()
         PPrint("Shuffling completed.", "plus")
     elif shuffleMode.upper()[0] == "A":
@@ -57,6 +57,8 @@ try:
     elif shuffleMode.upper()[0] == "Q":
         shuffle("temp_questions.json").questions()
         PPrint("Shuffling completed.", "plus")
+    else:
+        pass
     #dont want to print shuffling completed if none asked for
 except Exception as e:
     PPrint("Shuffling failed! Attempting to carry on...", "minus")
@@ -77,7 +79,6 @@ PPrint("base .py file created.", "plus")
 try:
     import py_compile
     py_compile.compile(filename, filename.replace(".py",".pyc"))
-    print(filename)
 except Exception as e:
     PPrint(".pyc Building failed! Erroring out...", "minus")
     PPrint("Exception: " + str(e), "minus")
@@ -85,6 +86,6 @@ except Exception as e:
 #print("\n")
 PPrint(".pyc file created!", "plus")
 PPrint("Removing bare .py file...", "info")
-#os.remove(filename)
+os.remove(filename)
 PPrint("Quiz creation completed with no errors!", "plus")
 sys.exit(0)

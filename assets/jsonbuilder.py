@@ -64,6 +64,6 @@ def BuildJSON(filename):
     main["totalQuestions"] = totalQuestions
     #Write this stuff
     all_json = json.dumps(main)
-    enc_json=encode(all_json.encode(),"uu")
-    with open(filename, 'wb') as f:
+    enc_json = encode(all_json,"rot_13")
+    with open(filename, 'w') as f:
         f.write(enc_json)

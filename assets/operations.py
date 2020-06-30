@@ -11,14 +11,14 @@ class shuffle():
         self.filename = filename
         self.newdata = {}
         self.temporarydata = {}
-        with open(self.filename, "rb") as f:
+        with open(self.filename, "r") as f:
             enc_json = f.read()
-            unenc_json = decode(enc_json,"uu").decode() #to utf8
+            unenc_json = decode(enc_json,"rot_13")
             self.olddata = json.loads(unenc_json)
         self.temporarydata = self.olddata
 
     def questions(self):
-        PPrint("Shuffling questions.", "module")
+        PPrint("Shuffling questions...", "module")
         takennumbers = []
         for i in range(1,self.temporarydata["totalQuestions"]+1):
             oldquestiondata = self.temporarydata[f"Question{i}"]
@@ -29,7 +29,7 @@ class shuffle():
             self.newdata[f"Question{str(questionNum)}"] = oldquestiondata
 
     def answers(self):
-        PPrint("Shuffling answers.", "module")
+        PPrint("Shuffling answers...", "module")
         for i in range(1, self.olddata["totalQuestions"]+1):
             oldquestiondata = self.temporarydata[f"Question{i}"]
             options = oldquestiondata["options"]
@@ -51,6 +51,6 @@ class shuffle():
 
     def write(self):
         self.newdata["totalQuestions"] = self.olddata["totalQuestions"]
-        with open(self.filename, 'wb') as f:
-            enc_data =  encode(json.dumps(self.newdata).encode(),"uu")
+        with open(self.filename, 'w') as f:
+            enc_data =  encode(json.dumps(self.newdata),"rot_13")
             f.write(enc_data)
