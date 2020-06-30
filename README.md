@@ -10,7 +10,7 @@ A CLI 'quizlet' generator. Interactively lets you write your own questions and a
 
 ## Use
 Generator prefers to use colorama, but should still work without. The quizlet requires no external libraries.
-** Install colorama **
+**Install colorama**
 ```bash
 pip install colorama
 ```
@@ -18,12 +18,12 @@ or
 ```bash
 pip install -r "requirements.txt"
 ```
-** Generate Quizlet **
+**Generate Quizlet**
 Simply run application and follow prompts. When it finishes will generate the encoded final file.
 ```bash
 python3 TextQuizGen.py
 ```
-** Run Quizlet **
+**Run Quizlet**
 On the tester's computer can just be executed with python3
 ```bash
 python3 *quizname*.pyc
